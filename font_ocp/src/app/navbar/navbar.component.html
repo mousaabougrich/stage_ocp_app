@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar Example</title>
+  <style>
+    .navbar-custom {
+      background: url('https://source.unsplash.com/random/1920x1080?business') no-repeat center center;
+      background-size: cover;
+      border-bottom: 2px solid #2bff00; /* Bordure verte subtile */
+      box-shadow: 0 8px 10px rgba(0, 0, 99, 0.1); /* Ombre portée subtile */
+    }
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link,
+    .navbar-custom .btn {
+      color: #3ecd23;
+    }
+    .navbar-custom .navbar-toggler {
+      border-color: #3ecd23;
+    }
+    .navbar-custom .form-control {
+      border-color: #3ecd23;
+    }
+    .navbar-custom .form-control::placeholder {
+      color: #3ecd23;
+    }
+    /* Add styles for the logout button to make it more visible */
+    .navbar-custom .btn-logout {
+      background-color: #3ecd23; /* Background color for the logout button */
+      color: #ffffff; /* Text color for the logout button */
+      border: none; /* Remove border */
+      border-radius: 4px; /* Rounded corners */
+      padding: 8px 16px; /* Padding around the text */
+    }
+    .navbar-custom .btn-logout i {
+      margin-right: 2px; /* Spacing between icon and text */
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom" *ngIf="!authService.isAuthenticated()">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="ocp-logo-4F7287992D-seeklogo.com.ico" alt="Logo" width="30" height="30" class="me-3">
+      OCP
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="planning">Consulter le planning hebdomadaire</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/lesservices">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/collaborateurs">Collaborateurs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li>
+          <a class="nav-link">
+            {{authService.authenticatedUser?.username}}
+          </a>
+        </li>
+        <li>
+          <a class="btn btn-logout nav-link text-center" (click)="handleLogout()">
+            <i class="bi bi-box-arrow-right text-center"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</body>
+</html>

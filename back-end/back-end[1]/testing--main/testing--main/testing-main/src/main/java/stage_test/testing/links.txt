@@ -1,0 +1,63 @@
+//////////////////service_dep//////////////
+working:
+post:
+http://localhost:8090/services/add
+json:
+{
+  "nom": "Service Name"
+
+}
+delete:
+http://localhost:8090/services/delete/{nom}
+EX:
+http://localhost:8090/services/delete/Service Name
+PUT:
+http://localhost:8090/services/update/{nom}
+{
+  "nom": "Updated name li biti"
+  }
+  GET:
+  http://localhost:8090/services/all
+
+///////////////Collaborateur///////////////////
+post:
+http://localhost:8090/collaborateurs/add?serviceName=ServiceName
+
+{
+  "nom": "Doe",
+  "prenom": "John"
+}
+
+update:
+http://localhost:8090/collaborateurs/update?nom=Doe&prenom=John&serviceName=informatique
+{
+  "nom": "ahmed",
+  "prenom": "maz"
+}
+delete:
+http://localhost:8090/collaborateurs/delete?nom=mehdi&prenom=haouat
+get:
+http://localhost:8090/collaborateurs/service/getall/informatique
+//////sectaire ////////////////ymkn t ajouti whada sf l service hit onr to one
+http://localhost:8090/api/secretaires/add?serviceName=biology
+{
+  "nom": "Smitkh",
+  "prenom": "Jane",
+  "email": "janek.smith@ocp.com",
+  "password": "SecurkePassword123"
+}
+http://localhost:8090/api/secretaires/update?nom=Smith&prenom=Jane&serviceName=biology
+{
+  "nom": mehdi,
+  "prenom": "Jane",
+  "email": "janeh@ocp.com",
+  "password": "SecurkePassword123"
+}
+
+
+
+//////////////////planning///////////
+for filling table
+http://localhost:8090/api/planning/fill-planning?startDate=2024-01-01&endDate=2024-01-31
+http://localhost:8090/api/planning/delete/1
+http://localhost:8090/api/planning/collaborateur/1/disponibilite?startDate=2024-07-01&endDate=2024-07-30

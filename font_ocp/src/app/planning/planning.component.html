@@ -1,0 +1,59 @@
+<div class="container mt-4">
+  <!-- Bouton Ajouter Service sans cadre extérieur -->
+
+  <ng-container *ngIf="lesservices | async as listLesservices; else errorsOrLoading">
+    <div class="card shadow-lg border-success">
+      <div class="card-header text-center bg-success text-white border-bottom border-success">
+        <h4 class="mb-0">Les Services Disponibles</h4>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchServices()">
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-success text-white border-0"><i class="bi bi-search"></i> Mot Clé :</span>
+            <input type="text" class="form-control" formControlName="keyword" placeholder="Rechercher un service">
+            <button class="btn btn-success" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered text-center">
+            <thead class="table-success">
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th >Consulter le planning</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let s of listLesservices">
+              <td>{{s.id_s}}</td>
+              <td>{{s.nom}}</td>
+              <td>
+                <button (click)=" handleVisitPlanning(s)"  class="btn btn-success" aria-label="Consulter le planning">
+                  <i class="bi bi-calendar3"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <nav>
+          <ul class="pagination justify-content-center mt-4">
+            <li *ngFor="let item of [].constructor(totalPages); let i = index" class="page-item" [ngClass]="{'active': i === currentPage}">
+              <a (click)="goToPage(i)" class="page-link">{{i + 1}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #errorsOrLoading>
+    <ng-container *ngIf="errorMessage; else loading">
+      <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+    </ng-container>
+    <ng-template #loading>
+      <div class="text-center mt-4"><i class="bi bi-hourglass-split"></i> Chargement...</div>
+    </ng-template>
+  </ng-template>
+</div>
